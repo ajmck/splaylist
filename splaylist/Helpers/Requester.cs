@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
+using SpotifyAPI.Web.Enums;
 
 namespace splaylist.Helpers
 {
@@ -170,14 +171,27 @@ namespace splaylist.Helpers
         private static Func<string, bool> Not(Func<string, bool> method) => x => !method(x);
 
 
-
+        /// <summary>
+        /// Gets and extends a playlist by ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="status"></param>
+        /// <param name="forceUpdate"></param>
+        /// <returns></returns>
         public static async Task<ListingPlaylist> GetAndExtendPlaylist(string id, LoadingStatus status = null, bool forceUpdate = false)
         {
             var fullPlaylist = await API.S.GetPlaylistAsync(id);
             var listingPlaylist = new ListingPlaylist(fullPlaylist);
-
             status?.ChangeStage(LoadingStatus.Stage.Tracks, 0);
             listingPlaylist.Tracks = await Requester.GetPlaylistTracks(fullPlaylist, status);
+
+            return await GetAndExtendListingPlaylist(listingPlaylist, status, forceUpdate);
+        }
+
+
+        public static async Task<ListingPlaylist> GetAndExtendListingPlaylist(ListingPlaylist listingPlaylist, LoadingStatus status = null, bool forceUpdate = false)
+        {
+
 
             var retrievedIDs = ExtractIDsFromPlaylist(listingPlaylist.Tracks);
             
@@ -202,6 +216,70 @@ namespace splaylist.Helpers
             return listingPlaylist;
         }
 
+
+
+        public static async Task<ListingPlaylist> GetSpecialPlaylist(string type, LoadingStatus status = null)
+        {
+            if (type == null) return null; 
+            List<ListingTrack> tracks = new List<ListingTrack>();
+            ListingPlaylist lp;
+            List<FullTrack> retrievedTracks;
+
+            status?.ChangeStage(LoadingStatus.Stage.Tracks, 0);
+
+            switch (type)
+            {
+                case "LibraryTracks":
+                    var savedTracks = await Depaginator<SavedTrack>.Depage(await API.S.GetSavedTracksAsync(), status);
+                    foreach (var track in savedTracks)
+                    {
+                        tracks.Add(new ListingTrack(track));
+                    }
+                    lp = new ListingPlaylist(tracks, "Library Tracks");
+                    break;
+
+                case "TopTracksShortTerm":
+                    retrievedTracks = await Depaginator<FullTrack>.Depage(await API.S.GetUsersTopTracksAsync(TimeRangeType.ShortTerm, limit: 50), status);
+                    foreach (var track in retrievedTracks)
+                    {
+                        tracks.Add(new ListingTrack(track));
+                    }
+                    lp = new ListingPlaylist(tracks, "Top Tracks (Short term)");
+                    break;
+
+                case "TopTracksMediumTerm":
+                    retrievedTracks = await Depaginator<FullTrack>.Depage(await API.S.GetUsersTopTracksAsync(TimeRangeType.MediumTerm, limit: 50), status);
+                    foreach (var track in retrievedTracks)
+                    {
+                        tracks.Add(new ListingTrack(track));
+                    }
+                    lp = new ListingPlaylist(tracks, "Top Tracks (Medium term)");
+                    break;
+
+                case "TopTracksLongTerm":
+                    retrievedTracks = await Depaginator<FullTrack>.Depage(await API.S.GetUsersTopTracksAsync(TimeRangeType.LongTerm, limit: 50), status);
+                    foreach (var track in retrievedTracks)
+                    {
+                        tracks.Add(new ListingTrack(track));
+                    }
+                    lp = new ListingPlaylist(tracks, "Top Tracks (Long term)");
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+            }
+
+            return lp;
+
+        }
+
+
+        public static async Task<ListingPlaylist> GetAndExtendSpecialPlaylist(string type, LoadingStatus status = null)
+        {
+            if (type == null) return null;
+            var lp = await GetSpecialPlaylist(type, status);
+            return await GetAndExtendListingPlaylist(lp, status);
+        }
 
     }
 }

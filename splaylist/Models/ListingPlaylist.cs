@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using SpotifyAPI.Web.Models;
 using System.Collections.Generic;
+using splaylist.Helpers;
 
 namespace splaylist.Models
 {
@@ -29,6 +30,19 @@ namespace splaylist.Models
             TrackCount = fp?.Tracks?.Total;
         }
 
+
+        /// <summary>
+        /// for special playlists
+        /// </summary>
+        /// <param name="tracks"></param>
+        /// <param name="name"></param>
+        public ListingPlaylist(List<ListingTrack> tracks, string name)
+        {
+            Playlist = new SimplePlaylist();
+            Playlist.Name = name;
+            Tracks = tracks;
+            TrackCount = tracks.Count;
+        }
 
         [JsonProperty]
         public string Id { get; protected set; }

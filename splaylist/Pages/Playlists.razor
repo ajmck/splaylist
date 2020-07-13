@@ -10,19 +10,24 @@
 @inject NavigationManager NavigationManager
 @inject Cache Cache
 
-<NeedsAuthentication>
-<p>User: @api.UserProfile.DisplayName</p>
-<p>User ID: @api.UserProfile.Id</p>
+    <NeedsAuthentication>
+        <p>User: @api.UserProfile.DisplayName</p>
+        <p>User ID: @api.UserProfile.Id</p>
 
-@if (_loadedListingPlaylists != null)
-{
+        <NavLink class="nav-link" href="other/LibraryTracks">Library</NavLink>
+        <NavLink class="nav-link" href="other/TopTracksShortTerm">Top Tracks (short term)</NavLink>
+        <NavLink class="nav-link" href="other/TopTracksMediumTerm">Top Tracks (medium term)</NavLink>
+        <NavLink class="nav-link" href="other/TopTracksLongTerm">Top Tracks (long term)</NavLink>
+
+        @if (_loadedListingPlaylists != null)
+        {
     <EjsGrid DataSource="@_loadedListingPlaylists"
              AllowResizing="true"
              AllowGrouping="true"
              AllowSorting="true"
              ShowColumnChooser="true"
              Toolbar="@( new List<string>() { "ColumnChooser"})">
-             @*ContextMenuItems="@ContextMenuItems">*@
+        @*ContextMenuItems="@ContextMenuItems">*@
         <GridEvents RowSelected="SelectionHandler" TValue="ListingPlaylist"></GridEvents>
         <GridColumns>
             <GridColumn Field="@nameof(ListingPlaylist.Name)" HeaderText="Name"></GridColumn>
@@ -35,14 +40,11 @@
             <GridColumn Field="@nameof(ListingPlaylist.Collaborative)" HeaderText="Collaborative" Visible="false"></GridColumn>
 
         </GridColumns>
-    </EjsGrid>
-
-}
-else
-{
-    <p>Loading Playlists...</p>
-}
-</NeedsAuthentication>
+    </EjsGrid> }
+                    else
+                    {
+    <p>Loading Playlists...</p>}
+    </NeedsAuthentication>
 
 
 @code {

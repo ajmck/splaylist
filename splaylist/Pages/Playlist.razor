@@ -1,5 +1,5 @@
 ﻿@page "/playlists/{id}"
-
+@page "/other/{specialtype}"
 @using splaylist.Helpers
 @using SpotifyAPI.Web.Models
 @using splaylist.Models
@@ -104,13 +104,28 @@
     EjsGrid<ListingTrack> Grid;
     string selectedText = "";
 
+    [Parameter] 
+    public string specialtype { get; set; }
+
+
     protected override async Task OnInitializedAsync()
     {
-        playlistInfo = Cache.GetSimplePlaylist(id);
-
         // TODO - fix lag spike when the table begins rendering
         loader = new LoadingStatus();
-        playlist = await Requester.GetAndExtendPlaylist(id, loader);
+
+        if (specialtype == null)
+        {
+            playlistInfo = Cache.GetSimplePlaylist(id);
+            playlist = await Requester.GetAndExtendPlaylist(id, loader);
+        }
+        else
+        {
+            playlistInfo = new SimplePlaylist();
+            playlistInfo.Name = specialtype;
+            playlistInfo.Owner = api.UserProfile;
+            playlistInfo.Tracks = new SimplePlaylistTrackInfo();
+            playlist = await Requester.GetAndExtendSpecialPlaylist(specialtype, loader);
+        }
 
 
     }
