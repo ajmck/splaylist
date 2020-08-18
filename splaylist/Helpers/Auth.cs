@@ -26,7 +26,10 @@ namespace splaylist.Helpers
         public static string ClientID => _clientID;
         public static string BaseURI => _callbackURI;
 
-        public static bool ShowSpotifyPermissions = false;
+        /// <summary>
+        /// Below value is whether the prompt to accept permissions should be shown each time (ie: visibly show the spotify login page)
+        /// </summary>
+        public static bool ShowSpotifyPermissions = true;
 
         #endregion
 

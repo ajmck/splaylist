@@ -1,0 +1,20 @@
+@page "/logout"
+
+@using Helpers
+
+@inject NavigationManager UriHelper
+@inject API  api
+
+
+<p>Logging off...</p>
+
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        api.Logout();
+        UriHelper.NavigateTo("/");
+    }
+
+}

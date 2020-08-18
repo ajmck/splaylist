@@ -40,5 +40,12 @@ namespace splaylist.Helpers
 
         }
 
+
+        public void Logout()
+        {
+            S = null;
+            UserProfile = null;
+        }
+
     }
 }

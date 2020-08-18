@@ -25,4 +25,7 @@
     <ProjectReference Include="..\SpotifyAPI-NET\SpotifyAPI.Web\SpotifyAPI.Web.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="Properties\launchSettings.json" />
+  </ItemGroup>
 </Project>

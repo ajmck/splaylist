@@ -54,7 +54,7 @@
         else
         {
             @* todo - logout link, and the content may need to be manually refreshed *@
-            <a class="ml-md-auto">Logged In as @API.UserProfile.DisplayName</a>
+    <a class="ml-md-auto" href="/logout">Logged In as @API?.UserProfile?.DisplayName</a>
         }
     </div>
 
@@ -75,4 +75,6 @@
     {
         collapseNavMenu = !collapseNavMenu;
     }
+
+
 }
