@@ -4,8 +4,8 @@
 @using SpotifyAPI.Web.Models
 @using splaylist.Models
 
-@using Syncfusion.EJ2.Blazor.Grids
-@using Syncfusion.EJ2.Blazor.Navigations
+@using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Navigations
 
 @inject API api
 @inject NavigationManager nm
@@ -36,7 +36,7 @@
                 <p>Selected: @selectedText</p>
 
 
-                <EjsGrid DataSource="@playlist.Tracks"
+                <SfGrid DataSource="@playlist.Tracks"
                          @ref="@Grid"
                          AllowSorting="true"
                          AllowFiltering="true"
@@ -83,7 +83,7 @@
                     <GridColumn Field="@nameof(ListingTrack.Valence)" HeaderText="Valence" Visible="true"></GridColumn>
 
                 </GridColumns>
-                </EjsGrid>
+                </SfGrid>
                 @*</DelayComponent>*@
             }
         }
@@ -101,7 +101,7 @@
 
     LoadingStatus loader;
 
-    EjsGrid<ListingTrack> Grid;
+    SfGrid<ListingTrack> Grid;
     string selectedText = "";
 
     [Parameter] 

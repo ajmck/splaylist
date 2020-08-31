@@ -3,17 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "splaylist", "splaylist\splaylist.csproj", "{8656BEAD-0E57-417F-8C60-F71A11651B70}"
-	ProjectSection(ProjectDependencies) = postProject
-		{00AFA00B-9C0D-4BF4-87F1-DE3D530C6689} = {00AFA00B-9C0D-4BF4-87F1-DE3D530C6689}
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpotifyAPI.Web", "SpotifyAPI-NET\SpotifyAPI.Web\SpotifyAPI.Web.csproj", "{00AFA00B-9C0D-4BF4-87F1-DE3D530C6689}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "splaylist.Hosted", "splaylist.Hosted\splaylist.Hosted.csproj", "{1A9F87A4-DF14-4520-AFCD-214510230CC8}"
-	ProjectSection(ProjectDependencies) = postProject
-		{8656BEAD-0E57-417F-8C60-F71A11651B70} = {8656BEAD-0E57-417F-8C60-F71A11651B70}
-	EndProjectSection
+Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "splaylist.Hosted", "splaylist.Hosted\splaylist.Hosted.csproj", "{D1B87B4A-0CD5-44ED-B86A-382E42877A35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "splaylist.WASM", "splaylist.WASM\splaylist.WASM.csproj", "{BF0C82C4-B509-4D2E-81B5-C433181AB4B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,18 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8656BEAD-0E57-417F-8C60-F71A11651B70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8656BEAD-0E57-417F-8C60-F71A11651B70}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8656BEAD-0E57-417F-8C60-F71A11651B70}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8656BEAD-0E57-417F-8C60-F71A11651B70}.Release|Any CPU.Build.0 = Release|Any CPU
 		{00AFA00B-9C0D-4BF4-87F1-DE3D530C6689}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{00AFA00B-9C0D-4BF4-87F1-DE3D530C6689}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00AFA00B-9C0D-4BF4-87F1-DE3D530C6689}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00AFA00B-9C0D-4BF4-87F1-DE3D530C6689}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1A9F87A4-DF14-4520-AFCD-214510230CC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A9F87A4-DF14-4520-AFCD-214510230CC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1A9F87A4-DF14-4520-AFCD-214510230CC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1A9F87A4-DF14-4520-AFCD-214510230CC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1B87B4A-0CD5-44ED-B86A-382E42877A35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1B87B4A-0CD5-44ED-B86A-382E42877A35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1B87B4A-0CD5-44ED-B86A-382E42877A35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1B87B4A-0CD5-44ED-B86A-382E42877A35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF0C82C4-B509-4D2E-81B5-C433181AB4B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF0C82C4-B509-4D2E-81B5-C433181AB4B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF0C82C4-B509-4D2E-81B5-C433181AB4B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF0C82C4-B509-4D2E-81B5-C433181AB4B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

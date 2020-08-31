@@ -3,8 +3,8 @@
 @using SpotifyAPI.Web.Models
 @using splaylist.Helpers
 @using splaylist.Models
-@using Syncfusion.EJ2.Blazor.Grids
-@using Syncfusion.EJ2.Blazor.Navigations
+@using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Navigations
 
 @inject API api
 @inject NavigationManager NavigationManager
@@ -21,7 +21,7 @@
 
         @if (_loadedListingPlaylists != null)
         {
-    <EjsGrid DataSource="@_loadedListingPlaylists"
+    <SfGrid DataSource="@_loadedListingPlaylists"
              AllowResizing="true"
              AllowGrouping="true"
              AllowSorting="true"
@@ -40,7 +40,7 @@
             <GridColumn Field="@nameof(ListingPlaylist.Collaborative)" HeaderText="Collaborative" Visible="false"></GridColumn>
 
         </GridColumns>
-    </EjsGrid> }
+    </SfGrid> }
                     else
                     {
     <p>Loading Playlists...</p>}
